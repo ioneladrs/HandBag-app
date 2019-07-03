@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/personal_information"
+            android:icon="@drawable/personal_info"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/open_bag"
+            android:icon="@drawable/bag_icon"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/location_option"
+            android:icon="@drawable/location_icon"
+            android:title="@string/menu_slideshow" />
+         </group>
+</menu>
