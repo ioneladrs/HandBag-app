@@ -8,12 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class controlFragment extends Fragment {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class aboutInformationFragment extends Fragment {
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_control, container, false);
+        return inflater.inflate(R.layout.fragment_about_information, container, false);
     }
 
     @Override

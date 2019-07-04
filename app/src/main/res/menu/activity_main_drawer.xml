@@ -7,14 +7,18 @@
         <item
             android:id="@+id/personal_information"
             android:icon="@drawable/personal_info"
-            android:title="@string/menu_home" />
+            android:title="@string/info" />
         <item
             android:id="@+id/open_bag"
             android:icon="@drawable/bag_icon"
-            android:title="@string/menu_gallery" />
+            android:title="@string/open_bag" />
         <item
             android:id="@+id/location_option"
             android:icon="@drawable/location_icon"
-            android:title="@string/menu_slideshow" />
-         </group>
+            android:title="@string/location" />
+        <item
+            android:id="@+id/about_section"
+            android:icon="@drawable/about_icon"
+            android:title="@string/info" />
+    </group>
 </menu>

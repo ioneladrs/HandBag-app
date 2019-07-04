@@ -2,18 +2,19 @@
     <string name="app_name">inteliGeanta</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Nume Prenume</string>
+    <string name="nav_header_subtitle">email</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="personal_info">Informaţii personale</string>
+    <string name="open_bag">Deschide geanta</string>
+    <string name="location">Localizează</string>
+    <string name="info">Informaţii</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="university_info">Facultatea de Inginerie Electrică şi Stiinţa Calculatoarelor
+
+        \nAutor: Ionela Deriş\nCoordonator: Prof.univ.dr.ing. Cristina-Elena Turcu</string>
+    <string name="project_info">Acest proiect a fost dezvoltat în cadrul proiectului de licenţă pentru sesiunea de vară, anul 2019.</string>
+    <string name="todo">TODO</string>
 </resources>

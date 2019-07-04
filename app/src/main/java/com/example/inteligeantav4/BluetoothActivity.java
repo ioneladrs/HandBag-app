@@ -22,14 +22,15 @@ import android.widget.TextView;
 
 public class BluetoothActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    private static final String TAG ="MainActivity";
+    private static final String TAG = "MainActivity";
     private View mainContent;
     public Button BtConnect;
     public TextView BtState;
 
 
-    public static boolean connect=false;
-    private BluetoothConnect bluetooth=null;
+    public static boolean connect = false;
+    private BluetoothConnect bluetooth = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +47,13 @@ public class BluetoothActivity extends AppCompatActivity
         mainContent = findViewById(R.id.contentMain);
         BtConnect = findViewById(R.id.connect_btn);
         BtState = findViewById(R.id.status);
-        View headerView= navigationView.getHeaderView(0);
+        View headerView = navigationView.getHeaderView(0);
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainContent.setVisibility(View.VISIBLE);
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
             }
         });
 
@@ -95,29 +98,35 @@ public class BluetoothActivity extends AppCompatActivity
         if (id == R.id.personal_information) {
             mainContent.setVisibility(View.GONE);
             fragment = new userInformationFragment();
+        } else if (id == R.id.open_bag) {
+            mainContent.setVisibility(View.GONE);
+            fragment = new controlFragment();
         }
-        else if (id == R.id.open_bag) {
-
-        } else if (id == R.id.location_option) {
+        else if (id == R.id.about_section) {
+            mainContent.setVisibility(View.GONE);
+            fragment = new aboutInformationFragment();
+        }
+        else if (id == R.id.location_option) {
 
         }
-        if(fragment != null){
-            FragmentManager fragmentManager= getSupportFragmentManager();
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.fragment_container, fragment);
-        ft.commit();
+            ft.commit();
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void onConnectPressed(){
+
+    public void onConnectPressed() {
         BtState.setText("connecting");
         final String macAddress = "20:18:08:23:51:75";
         connect = bluetooth.connect(macAddress);
-        if (connect){
+        if (connect) {
             BtState.setText("Conectat");
-        }else{
+        } else {
             BtState.setText("Conexiune esuata");
         }
     }
