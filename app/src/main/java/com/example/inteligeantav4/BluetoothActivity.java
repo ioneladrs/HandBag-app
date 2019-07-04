@@ -3,23 +3,30 @@ package com.example.inteligeantav4;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BluetoothActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private static final String TAG ="MainActivity";
-
+    private View mainContent;
     public Button BtConnect;
     public TextView BtState;
+
 
     public static boolean connect=false;
     private BluetoothConnect bluetooth=null;
@@ -28,7 +35,7 @@ public class BluetoothActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,8 +43,18 @@ public class BluetoothActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        mainContent = findViewById(R.id.contentMain);
         BtConnect = findViewById(R.id.connect_btn);
         BtState = findViewById(R.id.status);
+        View headerView= navigationView.getHeaderView(0);
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainContent.setVisibility(View.VISIBLE);
+            }
+        });
+
+
         BtConnect.setOnClickListener(this);
         bluetooth = new BluetoothConnect(this);
     }
@@ -73,17 +90,22 @@ public class BluetoothActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Fragment fragment = null;
         int id = item.getItemId();
-        if (id== R.id.nav_home){
-
+        if (id == R.id.personal_information) {
+            mainContent.setVisibility(View.GONE);
+            fragment = new userInformationFragment();
         }
-        else if (id == R.id.personal_information) {
-            Intent intent = new Intent(BluetoothActivity.this, ControlActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.open_bag) {
+        else if (id == R.id.open_bag) {
 
         } else if (id == R.id.location_option) {
 
+        }
+        if(fragment != null){
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.fragment_container, fragment);
+        ft.commit();
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -93,11 +115,10 @@ public class BluetoothActivity extends AppCompatActivity
         BtState.setText("connecting");
         final String macAddress = "20:18:08:23:51:75";
         connect = bluetooth.connect(macAddress);
-
         if (connect){
-            BtState.setText("connected");
+            BtState.setText("Conectat");
         }else{
-            BtState.setText("connection failed");
+            BtState.setText("Conexiune esuata");
         }
     }
 
