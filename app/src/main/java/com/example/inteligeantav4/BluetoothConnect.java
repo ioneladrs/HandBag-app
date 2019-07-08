@@ -3,6 +3,7 @@ package com.example.inteligeantav4;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,9 @@ import java.util.UUID;
 
 public class BluetoothConnect
 {
+
+
+    public static final String TAG = BluetoothConnect.class.getSimpleName();
     private final static UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static InputStream in = null;
     private static OutputStream out = null;
@@ -40,12 +44,15 @@ public class BluetoothConnect
         return false;
     }
 
-    public static void send(final String strMessage)
+    public static void send(String strMessage)
     {
+        Log.d(TAG, "send: " + strMessage);
+        strMessage += "#";
         byte[] msgBuffer = strMessage.getBytes();
         try
         {
             out.write(msgBuffer);
+            out.flush();
         }
         catch (IOException e) {}
     }
